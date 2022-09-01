@@ -4,15 +4,30 @@
     box-sizing: border-box;
 }
 
-body {
+.wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 80vh;
 }
 
 .container {
     display: flex;
     flex-wrap: wrap;
     width: 480px;
+}
+
+.form-group {
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+}
+
+input, .btn {
+    padding: 8px 10px;
+    font-size: 17px;
+}
+
+.btn {
+    cursor: pointer;
 }
