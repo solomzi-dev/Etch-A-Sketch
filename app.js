@@ -1,23 +1,47 @@
 const container = document.querySelector('.container');
+const input = document.querySelector('#userNum');
+const form = document.querySelector('form');
 
 // Create the grid
 function createGrid(gridSize) {
+    if(isNaN(gridSize)) {
+        alert('Please enter a valid number.');
+        return;
+    }
+    if(gridSize < 2 || gridSize > 100) {
+        alert('Please enter a number between 2 and 100.');
+        return;
+    }
+    if(!gridSize) {
+        alert('Input is empty.');
+        return;
+    }
     const containerSize = 480;
     const cellSize = containerSize / gridSize;
 
     for(let i = 0; i < gridSize * gridSize; i++) {
         let cell = document.createElement('div');
         cell.setAttribute('class', 'cell');
-        cell.style.cssText = `width: ${cellSize}px; height: ${cellSize}px; border: 1px solid #000`;
+        cell.style.cssText = `width: ${cellSize}px; height: ${cellSize}px; border: 1px solid black`;
         container.appendChild(cell);
     }
+    draw();
 }
-createGrid(23);
 
-const cells = document.querySelectorAll('.cell');
-console.log(cells);
-cells.forEach(cell => {
-    cell.addEventListener('mouseover', e => {
-        e.target.style.backgroundColor = 'black';
-    })
+function draw() {
+    const cells = document.querySelectorAll('.cell');
+    cells.forEach(cell => {
+        cell.addEventListener('mouseover', e => {
+            e.target.style.backgroundColor = 'black';
+        })
+    });
+}
+
+createGrid(16);
+
+form.addEventListener('submit', e => {
+    e.preventDefault();
+    const userInput = input.value;
+    container.innerHTML = '';
+    createGrid(userInput);
 });
