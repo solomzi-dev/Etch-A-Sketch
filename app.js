@@ -4,18 +4,7 @@ const form = document.querySelector('form');
 
 // Create the grid
 function createGrid(pixelNum) {
-    if(isNaN(pixelNum)) {
-        alert('Please enter a valid number.');
-        return;
-    }
-    if(pixelNum < 2 || pixelNum > 100) {
-        alert('Please enter a number between 2 and 100.');
-        return;
-    }
-    if(!pixelNum) {
-        alert('Input is empty.');
-        return;
-    }
+    if(!IsValid(pixelNum)) return;
     const containerSize = 480;
     const cellSize = containerSize / pixelNum;
 
@@ -26,6 +15,26 @@ function createGrid(pixelNum) {
         container.appendChild(cell);
     }
     draw();
+}
+
+// Validation function
+function IsValid(pixelNum) {
+    if(isNaN(pixelNum)) {
+        alert('Please enter a valid number.');
+        createGrid(16);
+        return false;
+    }
+    if(pixelNum < 2 || pixelNum > 100) {
+        alert('Please enter a number between 2 and 100.');
+        createGrid(16);
+        return false;
+    }
+    if(!pixelNum) {
+        alert('Input is empty.');
+        createGrid(16);
+        return false;
+    }
+    return true;
 }
 
 function draw() {
@@ -44,4 +53,5 @@ form.addEventListener('submit', e => {
     const userInput = input.value;
     container.innerHTML = '';
     createGrid(userInput);
+    input.value = '';
 });
