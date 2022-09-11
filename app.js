@@ -3,23 +3,23 @@ const input = document.querySelector('#userNum');
 const form = document.querySelector('form');
 
 // Create the grid
-function createGrid(gridSize) {
-    if(isNaN(gridSize)) {
+function createGrid(pixelNum) {
+    if(isNaN(pixelNum)) {
         alert('Please enter a valid number.');
         return;
     }
-    if(gridSize < 2 || gridSize > 100) {
+    if(pixelNum < 2 || pixelNum > 100) {
         alert('Please enter a number between 2 and 100.');
         return;
     }
-    if(!gridSize) {
+    if(!pixelNum) {
         alert('Input is empty.');
         return;
     }
     const containerSize = 480;
-    const cellSize = containerSize / gridSize;
+    const cellSize = containerSize / pixelNum;
 
-    for(let i = 0; i < gridSize * gridSize; i++) {
+    for(let i = 0; i < pixelNum * pixelNum; i++) {
         let cell = document.createElement('div');
         cell.setAttribute('class', 'cell');
         cell.style.cssText = `width: ${cellSize}px; height: ${cellSize}px; border: 1px solid black`;
