@@ -37,12 +37,15 @@ function IsValid(pixelNum) {
     return true;
 }
 
+function changeColor(e) {
+    e.target.style.backgroundColor = 'black';
+}
+
 function draw() {
-    const cells = document.querySelectorAll('.cell');
-    cells.forEach(cell => {
-        cell.addEventListener('mouseover', e => {
-            e.target.style.backgroundColor = 'black';
-        })
+    container.addEventListener('mousedown', e => {
+        if(e.target.className === 'cell') {
+            e.target.addEventListener('mouseover', changeColor);
+        }
     });
 }
 
